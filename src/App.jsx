@@ -4,6 +4,7 @@ import HomePage from "@pages/HomePage";
 import "swiper/css";
 import MoviePage from "@pages/MoviePage";
 import MovieDetailPage from "@pages/MovieDetailPage";
+import AboutPage from "@pages/AboutPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviePage />} />
         <Route path="/movies/:movieId" element={<MovieDetailPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Route>
     </Routes>
   );
