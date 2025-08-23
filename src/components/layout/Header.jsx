@@ -49,6 +49,19 @@ const Header = () => {
             Movies
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-emerald-400 transition-all group-hover:w-full"></span>
           </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `relative pb-1 transition-colors ${
+                isActive
+                  ? "text-emerald-400"
+                  : "text-gray-300 hover:text-emerald-400"
+              }`
+            }
+          >
+            About
+            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-emerald-400 transition-all group-hover:w-full"></span>
+          </NavLink>
         </nav>
       </div>
     </header>
