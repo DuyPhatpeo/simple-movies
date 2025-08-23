@@ -1,5 +1,8 @@
 import { Fragment } from "react";
 import { NavLink } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import MovieList from "@components/movie/MovieList";
 
 function App() {
   return (
@@ -8,7 +11,7 @@ function App() {
         <span className="text-pink-600">Home</span>
         <span>Movies</span>
       </header>
-      <section className="banner h-[300px] page-container">
+      <section className="banner h-[300px] page-container mb-10">
         <div className="w-full h-full rounded-lg relative">
           <div className="overlay absolute inset-0 bg-gradient-to-t from-black/90 to-transparent rounded-lg"></div>
           <img
@@ -27,6 +30,56 @@ function App() {
               </span>
             </div>
             <button className="py-3 px-6 rounded-lg bg-pink-600 text-white font-medium">
+              Watch Now
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className="movies-layou page-container pb-10">
+        <h2 className="capitalize text-white mb-10 text-2xl font-bold">
+          Now playing
+        </h2>
+        <MovieList></MovieList>
+      </section>
+      <section className="movies-layou page-container pb-10">
+        <h2 className="capitalize text-white mb-10 text-2xl font-bold">
+          Top rated
+        </h2>
+        <div className="movie-list grid grid-cols-4 gap-10">
+          <div className="movie-card rounded-lg p-3 bg-slate-800 text-white">
+            <img
+              src="https://th.bing.com/th/id/R.54a3122864faffd83798f808429e9ce0?rik=%2fxamNDznrzD80w&riu=http%3a%2f%2fmoviefail.com%2fwp-content%2fuploads%2f2012%2f05%2favengers-4.jpeg&ehk=AUMutxE%2fsMSL5vL3Mxxhk91UTsob%2bMTNY78I%2fxjlXac%3d&risl=&pid=ImgRaw&r=0"
+              alt=""
+              className="w-full h-[250px] object-cover rounded-lg mb-5"
+            />
+            <h3 className=" text-xl font-bold mb-3">Avengers: Endgame</h3>
+            <div className="flex items-center justify-between text-sm opacity-50 mb-10">
+              <span className="">2017</span>
+              <span className="">7.4</span>
+            </div>
+            <button className="py-3 px-6 rounded-lg capitalize bg-pink-600 text-white  w-full">
+              Watch Now
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className="movies-layou page-container pb-10">
+        <h2 className="capitalize text-white mb-10 text-2xl font-bold">
+          Trending
+        </h2>
+        <div className="movie-list grid grid-cols-4 gap-10">
+          <div className="movie-card rounded-lg p-3 bg-slate-800 text-white">
+            <img
+              src="https://th.bing.com/th/id/R.54a3122864faffd83798f808429e9ce0?rik=%2fxamNDznrzD80w&riu=http%3a%2f%2fmoviefail.com%2fwp-content%2fuploads%2f2012%2f05%2favengers-4.jpeg&ehk=AUMutxE%2fsMSL5vL3Mxxhk91UTsob%2bMTNY78I%2fxjlXac%3d&risl=&pid=ImgRaw&r=0"
+              alt=""
+              className="w-full h-[250px] object-cover rounded-lg mb-5"
+            />
+            <h3 className=" text-xl font-bold mb-3">Avengers: Endgame</h3>
+            <div className="flex items-center justify-between text-sm opacity-50 mb-10">
+              <span className="">2017</span>
+              <span className="">7.4</span>
+            </div>
+            <button className="py-3 px-6 rounded-lg capitalize bg-pink-600 text-white  w-full">
               Watch Now
             </button>
           </div>
