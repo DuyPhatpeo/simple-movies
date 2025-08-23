@@ -16,11 +16,11 @@ const MoviesPage = () => {
           <input
             type="text"
             className="flex-1 bg-slate-800 text-white border border-gray-600 rounded-l-full py-2 px-4 
-                 focus:outline-none focus:border-pink-500 transition-colors duration-200"
+                 focus:outline-none focus:border-emerald-500 transition-colors duration-200"
             placeholder="Search movies..."
           />
           <button
-            className="bg-pink-600 hover:bg-pink-700 text-white rounded-r-full px-5 flex items-center justify-center
+            className="bg-emerald-500 hover:bg-emerald-400 text-white rounded-r-full px-5 flex items-center justify-center
                  transition-colors duration-200"
           >
             <FiSearch className="text-lg" />

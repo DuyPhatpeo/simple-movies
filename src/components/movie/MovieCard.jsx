@@ -4,25 +4,44 @@ import { useNavigate } from "react-router-dom";
 const MovieCard = ({ item }) => {
   const { title, vote_average, release_date, poster_path, id } = item;
   const navigate = useNavigate();
+
   return (
-    <div className="movie-card flex flex-col rounded-lg p-3 bg-slate-800 text-white h-full select-none">
+    <div
+      className="movie-card relative flex flex-col rounded-3xl overflow-hidden text-white h-[500px] select-none cursor-pointer shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+      onClick={() => navigate(`/movies/${id}`)}
+    >
+      {/* Poster background */}
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={title}
-        className="w-full h-[350px] object-cover rounded-lg mb-5"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-110"
       />
-      <div className="flex flex-col flex-1">
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
-        <div className="flex items-center justify-between text-sm opacity-80 mb-10">
-          <span>{new Date(release_date).getFullYear()}</span>
-          <span className="flex items-center gap-1">
-            <FaStar className="text-yellow-400" />
+
+      {/* Overlay gradient để chữ nổi bật */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+      {/* Content */}
+      <div className="relative z-10 p-6 flex flex-col justify-end h-full bg-gradient-to-t from-black/30 via-transparent to-transparent">
+        <h3 className="text-2xl font-extrabold mb-3 line-clamp-2 drop-shadow-lg">
+          {title}
+        </h3>
+
+        <div className="flex items-center justify-between text-sm opacity-90 mb-6">
+          <span className="font-medium">
+            {new Date(release_date).getFullYear()}
+          </span>
+          <span className="flex items-center gap-1 font-semibold text-yellow-400 drop-shadow-sm">
+            <FaStar />
             {vote_average.toFixed(1)}
           </span>
         </div>
+
         <button
-          onClick={() => navigate(`/movies/${id}`)}
-          className="py-3 px-6 rounded-lg capitalize bg-pink-600 text-white w-full mt-auto hover:bg-pink-700 transition"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/movies/${id}`);
+          }}
+          className="py-3 px-6 rounded-xl capitalize bg-emerald-500 text-white w-full hover:bg-emerald-400 shadow-md hover:shadow-lg transition-all duration-300"
         >
           Watch Now
         </button>

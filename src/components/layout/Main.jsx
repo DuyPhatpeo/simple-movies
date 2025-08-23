@@ -6,7 +6,9 @@ const Main = () => {
   return (
     <Fragment>
       <Header></Header>
-      <Outlet></Outlet>
+      <div className="pt-20">
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
     </Fragment>
   );
