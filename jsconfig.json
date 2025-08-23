@@ -7,7 +7,8 @@
       "@routers/*": ["src/routers/*"],
       "@hooks/*": ["src/hooks/*"],
       "@contexts/*": ["src/contexts/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@pages/*": ["src/pages/*"]
     }
   },
   "include": ["src/**/*"]

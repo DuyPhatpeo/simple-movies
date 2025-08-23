@@ -9,8 +9,6 @@ const Banner = () => {
     fetcher
   );
   const movies = data?.results || [];
-  console.log("Banner ~ movies: ", movies);
-
   return (
     <section className="banner h-[600px] page-container mb-10">
       <Swiper grabCursor={"true"} slidesPerView={"auto"} spaceBetween={30}>
