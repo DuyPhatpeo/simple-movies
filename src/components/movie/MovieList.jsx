@@ -4,34 +4,25 @@ import MovieCard from "./MovieCard";
 import useSWR from "swr";
 import { fetcher } from "../../config";
 // https://api.themoviedb.org/3/movie/now_playing?api_key=c636315d4d2f58e0941242e787a663fb
-const MovieList = () => {
+const MovieList = ({ types = "now_playing" }) => {
   const [movies, setMovies] = useState([]);
-  const { data, error } = useSWR(
-    "https://api.themoviedb.org/3/movie/now_playing?api_key=c636315d4d2f58e0941242e787a663fb",
+  const { data } = useSWR(
+    `https://api.themoviedb.org/3/movie/${types}?api_key=c636315d4d2f58e0941242e787a663fb`,
     fetcher
   );
   useEffect(() => {
-    setMovies(data?.results || []);
+    if (data && data.results) setMovies(data.results);
   }, [data]);
   console.log(movies);
   return (
     <div className="movie-list">
       <Swiper grabCursor={"true"} spaceBetween={40} slidesPerView={"auto"}>
-        <SwiperSlide>
-          <MovieCard></MovieCard>
-        </SwiperSlide>
-        <SwiperSlide>
-          <MovieCard></MovieCard>
-        </SwiperSlide>
-        <SwiperSlide>
-          <MovieCard></MovieCard>
-        </SwiperSlide>
-        <SwiperSlide>
-          <MovieCard></MovieCard>
-        </SwiperSlide>
-        <SwiperSlide>
-          <MovieCard></MovieCard>
-        </SwiperSlide>
+        {movies.length > 0 &&
+          movies.map((item) => (
+            <SwiperSlide key={item.id}>
+              <MovieCard item={item}></MovieCard>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
