@@ -2,6 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import { fetcher, apiKey } from "../../config";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules"; // 👈 import thêm
 import BannerItem from "./BannerItem";
 
 const Banner = () => {
@@ -17,13 +18,22 @@ const Banner = () => {
   const movies = movieData?.results || [];
   const genreList = genreData?.genres || [];
 
-  // map từ id -> name
   const genreMap = {};
   genreList.forEach((g) => (genreMap[g.id] = g.name));
 
   return (
     <section className="banner h-[800px] page-container mb-10">
-      <Swiper grabCursor={"true"} slidesPerView={"auto"} spaceBetween={30}>
+      <Swiper
+        modules={[Autoplay]} // 👈 add module
+        grabCursor={true}
+        slidesPerView={"auto"}
+        spaceBetween={30}
+        autoplay={{
+          delay: 4000, // 4s chuyển slide
+          disableOnInteraction: false, // không tắt khi user kéo
+        }}
+        loop={true} // 👈 để lặp vô tận
+      >
         {movies.length > 0 &&
           movies.map((item) => (
             <SwiperSlide key={item.id}>
