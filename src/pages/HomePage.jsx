@@ -24,6 +24,12 @@ const HomePage = () => {
         </h2>
         <MovieList types="popular"></MovieList>
       </section>
+      <section className="movies-layou page-container pb-10">
+        <h2 className="capitalize text-white mb-10 text-2xl font-bold">
+          Up Coming
+        </h2>
+        <MovieList types="upcoming"></MovieList>
+      </section>
     </Fragment>
   );
 };

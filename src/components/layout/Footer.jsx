@@ -4,7 +4,7 @@ import { MdHome, MdMovie, MdInfo, MdContactMail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="mt-20 text-gray-300 bg-gray-900 relative overflow-hidden">
+    <footer className="mt-20 text-gray-300 bg-gray-900 relative overflow-hidden w-full">
       {/* Gradient highlight */}
       <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent pointer-events-none"></div>
 
