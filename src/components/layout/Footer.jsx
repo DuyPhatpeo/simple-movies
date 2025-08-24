@@ -1,19 +1,27 @@
 import React from "react";
 import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
 import { MdHome, MdMovie, MdInfo, MdContactMail } from "react-icons/md";
+import logo from "@assets/logo.png"; // thêm logo nếu muốn dùng hình
 
 const Footer = () => {
   return (
-    <footer className="mt-20 text-gray-300 bg-gray-900 relative overflow-hidden w-full">
+    <footer className="bg-gray-900 text-gray-300 mt-5 relative overflow-hidden w-full">
       {/* Gradient highlight */}
       <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 py-12 relative z-10">
         {/* Logo + Desc */}
-        <div>
-          <h2 className="text-3xl font-bold mb-4 flex items-center gap-2 text-emerald-400">
-            🎬 DinoMovie
-          </h2>
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="DinoMovie Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <h2 className="text-3xl font-bold text-emerald-400 flex items-center gap-1">
+              DinoMovie
+            </h2>
+          </div>
           <p className="text-sm leading-relaxed text-gray-400">
             Discover movies, explore casts, and watch trailers. Built with ❤️
             using TMDB API.

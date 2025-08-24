@@ -1,16 +1,22 @@
 import React, { Fragment } from "react";
 import Header from "./Header";
-import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
+
 const Main = () => {
   return (
-    <Fragment>
-      <Header></Header>
-      <div className="pt-20">
-        <Outlet></Outlet>
-      </div>
-      <Footer></Footer>
-    </Fragment>
+    <div className="flex flex-col min-h-screen">
+      {/* Header */}
+      <Header />
+
+      {/* Main content */}
+      <main className="flex-1 pt-20">
+        <Outlet />
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 };
 
