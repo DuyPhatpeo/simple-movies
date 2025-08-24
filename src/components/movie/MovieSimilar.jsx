@@ -1,12 +1,15 @@
 import React from "react";
 import useSWR from "swr";
 import { fetcher, apiKey } from "../../config";
+import { useNavigate } from "react-router-dom";
 
 const MovieSimilar = ({ movieId }) => {
   const { data } = useSWR(
     `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`,
     fetcher
   );
+  const navigate = useNavigate();
+
   if (!data?.results?.length) return null;
 
   return (
@@ -14,7 +17,11 @@ const MovieSimilar = ({ movieId }) => {
       <h2 className="text-2xl font-semibold mb-8">Similar Movies</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {data.results.slice(0, 10).map((movie) => (
-          <div key={movie.id} className="flex flex-col">
+          <div
+            key={movie.id}
+            onClick={() => navigate(`/movies/${movie.id}`)}
+            className="flex flex-col cursor-pointer hover:scale-105 transition-transform duration-300"
+          >
             <img
               src={
                 movie.poster_path
