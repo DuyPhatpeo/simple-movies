@@ -1,3 +1,4 @@
+import Button from "@components/common/Button";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -38,15 +39,9 @@ const BannerItem = ({ item, genreMap }) => {
         </div>
 
         {/* Watch Now button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation(); // prevent parent click
-            navigate(`/movies/${item.id}`);
-          }}
-          className="py-3 px-8 rounded-xl bg-emerald-500 text-white font-semibold hover:bg-emerald-400 shadow-lg hover:shadow-xl transition-all duration-300"
-        >
+        <Button onClick={() => navigate(`/movies/${item.id}`)}>
           Watch Now
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import Button from "@components/common/Button";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -35,16 +36,7 @@ const MovieCard = ({ item }) => {
             {vote_average.toFixed(1)}
           </span>
         </div>
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate(`/movies/${id}`);
-          }}
-          className="py-3 px-6 rounded-xl capitalize bg-emerald-500 text-white w-full hover:bg-emerald-400 shadow-md hover:shadow-lg transition-all duration-300"
-        >
-          Watch Now
-        </button>
+        <Button onClick={() => navigate(`/movies/${id}`)}>Watch Now</Button>
       </div>
     </div>
   );
