@@ -72,7 +72,7 @@ const MoviesPage = () => {
       </div>
 
       {/* Pagination */}
-      {movies.length > 0 && (
+      {movies.length > 0 && totalPages > 1 && (
         <Pagination
           page={page}
           totalPages={totalPages}
