@@ -11,6 +11,7 @@ const MovieDetailPage = lazy(() => import("@pages/MovieDetailPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
 const ErrorPage = lazy(() => import("@pages/ErrorPage"));
+const WatchPage = lazy(() => import("@pages/WatchPage"));
 
 function App() {
   const [introLoading, setIntroLoading] = useState(true);
@@ -35,6 +36,7 @@ function App() {
           <Route path="/movies/:movieId" element={<MovieDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/watch/:id" element={<WatchPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

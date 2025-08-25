@@ -2,7 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import { fetcher, tmdbAPI } from "@api/config";
 
-const MovieVideo = ({ movieId }) => {
+const WatchVideo = ({ movieId }) => {
   const { data } = useSWR(tmdbAPI.getMovieVideos(movieId), fetcher);
 
   if (!data?.results?.length) return null;
@@ -14,7 +14,7 @@ const MovieVideo = ({ movieId }) => {
 
   return (
     <div className="w-full px-4 text-white">
-      <div className="w-full max-w-[1400px] mx-auto aspect-video overflow-hidden rounded-lg shadow-2xl">
+      <div className="w-full max-w-[1400px] mx-auto aspect-video overflow-hidden shadow-2xl">
         <iframe
           src={tmdbAPI.getMovieTrailer(trailer.key)}
           title={trailer.name}
@@ -27,4 +27,4 @@ const MovieVideo = ({ movieId }) => {
   );
 };
 
-export default MovieVideo;
+export default WatchVideo;

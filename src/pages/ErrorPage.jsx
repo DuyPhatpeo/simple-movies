@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white px-4">
+    <div className="flex items-center justify-center min-h-screen text-white px-4">
       <motion.div
         className="text-center"
         initial={{ opacity: 0, y: -50 }}

@@ -1,13 +1,11 @@
+// WatchInfo.jsx
 import { tmdbAPI } from "@api/config";
 import React from "react";
 import { FaStar, FaPlay } from "react-icons/fa";
 import { MdCalendarToday, MdAccessTime } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 
-const MovieInfo = ({ movie }) => {
-  const navigate = useNavigate();
+const WatchInfo = ({ movie }) => {
   const {
-    id,
     title,
     overview,
     release_date,
@@ -26,16 +24,11 @@ const MovieInfo = ({ movie }) => {
   const countries = production_countries.map((c) => c.name).join(", ");
   const companies = production_companies.map((c) => c.name).join(", ");
 
-  const handleWatchNow = () => {
-    // Chuyển sang trang xem phim
-    navigate(`/watch/${id}`);
-  };
-
   return (
-    <div className="max-w-6xl mx-auto px-4 -mt-20 relative z-10">
-      <div className="flex flex-col lg:flex-row items-start gap-8">
+    <div className="max-w-4xl mx-auto">
+      <div className="flex flex-col lg:flex-row items-start gap-6">
         {/* Poster */}
-        <div className="flex-shrink-0 w-[260px] lg:w-[320px] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+        <div className="flex-shrink-0 w-[180px] lg:w-[220px] rounded-2xl overflow-hidden shadow-lg border border-white/10">
           <img
             src={tmdbAPI.getImage(poster_path)}
             alt={title}
@@ -46,33 +39,33 @@ const MovieInfo = ({ movie }) => {
         {/* Info */}
         <div className="flex-1 flex flex-col text-white">
           {/* Title & Rating */}
-          <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-            <h1 className="text-4xl lg:text-5xl font-bold">{title}</h1>
-            <div className="flex items-center gap-2 text-yellow-400 text-lg">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+            <h1 className="text-2xl lg:text-3xl font-bold">{title}</h1>
+            <div className="flex items-center gap-1 text-yellow-400 text-base">
               <FaStar /> {vote_average?.toFixed?.(1) ?? vote_average}
             </div>
           </div>
 
           {/* Year & Runtime */}
-          <div className="flex flex-wrap gap-4 mt-2 text-gray-300 text-sm lg:text-base">
-            <span className="flex items-center gap-2">
+          <div className="flex flex-wrap gap-3 mt-1 text-gray-300 text-xs lg:text-sm">
+            <span className="flex items-center gap-1">
               <MdCalendarToday />{" "}
               {release_date ? new Date(release_date).getFullYear() : "N/A"}
             </span>
             {runtime && (
-              <span className="flex items-center gap-2">
-                <MdAccessTime /> {Math.floor(runtime / 60)}h {runtime % 60}min
+              <span className="flex items-center gap-1">
+                <MdAccessTime /> {Math.floor(runtime / 60)}h {runtime % 60}m
               </span>
             )}
           </div>
 
           {/* Genres */}
           {genres.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-1 mt-2">
               {genres.map((genre) => (
                 <span
                   key={genre.id}
-                  className="px-4 py-1 text-sm rounded-full border border-emerald-500 text-emerald-300 bg-emerald-500/20 font-medium"
+                  className="px-2 py-0.5 text-xs rounded-full border border-emerald-500 text-emerald-300 bg-emerald-500/20 font-medium"
                 >
                   {genre.name}
                 </span>
@@ -82,13 +75,13 @@ const MovieInfo = ({ movie }) => {
 
           {/* Overview */}
           {overview && (
-            <p className="text-gray-300 leading-relaxed mt-4 text-sm lg:text-base">
+            <p className="text-gray-300 leading-relaxed mt-3 text-sm lg:text-base">
               {overview}
             </p>
           )}
 
           {/* Other Info */}
-          <div className="mt-4 flex flex-col gap-2 text-gray-300 text-sm lg:text-base">
+          <div className="mt-3 flex flex-col gap-1 text-gray-300 text-xs lg:text-sm">
             {countries && (
               <span>
                 <strong>Country:</strong> {countries}
@@ -105,18 +98,10 @@ const MovieInfo = ({ movie }) => {
               </span>
             )}
           </div>
-
-          {/* Watch Now Button */}
-          <button
-            onClick={handleWatchNow}
-            className="mt-6 px-8 py-3 rounded-xl bg-red-600 hover:bg-red-700 transition font-semibold text-white inline-flex items-center gap-3 shadow-lg"
-          >
-            <FaPlay size={16} /> Watch Now
-          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default MovieInfo;
+export default WatchInfo;

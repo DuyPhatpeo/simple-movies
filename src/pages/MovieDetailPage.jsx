@@ -26,6 +26,7 @@ const MovieDetailPage = () => {
         <div className="lg:col-span-3 flex flex-col gap-10">
           {/* Movie Info */}
           <MovieInfo movie={data} />
+          <h2 className="text-4xl font-bold mb-8 text-center mt-10">Trailer</h2>
 
           {/* Trailer */}
           <MovieVideo movieId={movieId} />
