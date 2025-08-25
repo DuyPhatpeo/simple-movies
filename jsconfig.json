@@ -9,7 +9,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@contexts/*": ["src/contexts/*"],
       "@utils/*": ["src/utils/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@api/*": ["src/api/*"]
     }
   },
   "include": ["src/**/*"]

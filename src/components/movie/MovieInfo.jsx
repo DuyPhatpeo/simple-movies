@@ -1,4 +1,4 @@
-import { tmdbAPI } from "@/config";
+import { tmdbAPI } from "@api/config";
 import React from "react";
 import { FaStar, FaPlay } from "react-icons/fa";
 import { MdCalendarToday, MdAccessTime } from "react-icons/md";

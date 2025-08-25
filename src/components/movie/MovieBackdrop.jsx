@@ -1,5 +1,5 @@
 import React from "react";
-import { tmdbAPI } from "@/config";
+import { tmdbAPI } from "@api/config";
 
 const MovieBackdrop = ({ backdropPath, height = "600px" }) => {
   return (

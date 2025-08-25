@@ -6,7 +6,7 @@ import MovieSimilar from "@components/movie/MovieSimilar";
 import React, { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, tmdbAPI } from "@/config";
+import { fetcher, tmdbAPI } from "@api/config";
 
 const MovieDetailPage = () => {
   const { movieId } = useParams();

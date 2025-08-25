@@ -1,7 +1,7 @@
 import Button from "@components/common/Button";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { tmdbAPI } from "@/config";
+import { tmdbAPI } from "@/api/config";
 
 const BannerItem = ({ item, genreMap }) => {
   const navigate = useNavigate();

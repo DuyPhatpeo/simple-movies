@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, tmdbAPI } from "@/config";
+import { fetcher, tmdbAPI } from "@api/config";
 const MovieVideo = ({ movieId }) => {
   const { data } = useSWR(tmdbAPI.getMovieVideos(movieId), fetcher);
   if (!data?.results?.length) return null;

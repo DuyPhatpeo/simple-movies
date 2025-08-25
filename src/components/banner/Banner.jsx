@@ -1,8 +1,8 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, tmdbAPI } from "../../config";
+import { fetcher, tmdbAPI } from "@api/config";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules"; // 👈 import thêm
+import { Autoplay } from "swiper/modules";
 import BannerItem from "./BannerItem";
 
 const Banner = () => {

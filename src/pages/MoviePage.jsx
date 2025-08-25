@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, tmdbAPI } from "../config";
+import { fetcher, tmdbAPI } from "@api/config";
 import MovieCard from "@components/movie/MovieCard";
 import { FiSearch } from "react-icons/fi";
 import useDebounce from "@hooks/useDebounce";
@@ -11,7 +11,7 @@ const MAX_TMDB_PAGES = 500;
 const MoviesPage = () => {
   const [filter, setFilter] = React.useState("");
   const [page, setPage] = React.useState(1);
-  const [url, setUrl] = React.useState(tmdbAPI.getPopularMovies());
+  const [url, setUrl] = React.useState(tmdbAPI.getMovieList());
 
   const filterDebounce = useDebounce(filter, 500);
 
@@ -27,7 +27,7 @@ const MoviesPage = () => {
     if (filterDebounce) {
       setUrl(tmdbAPI.searchMovie(filterDebounce, page));
     } else {
-      setUrl(tmdbAPI.getPopularMovies(page));
+      setUrl(tmdbAPI.getMovieList("popular", page));
     }
   }, [filterDebounce, page]);
 
