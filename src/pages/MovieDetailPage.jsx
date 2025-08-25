@@ -6,14 +6,11 @@ import MovieSimilar from "@components/movie/MovieSimilar";
 import React, { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, apiKey } from "../config";
+import { fetcher, tmdbAPI } from "@/config";
 
 const MovieDetailPage = () => {
   const { movieId } = useParams();
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=credits`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getMovieDetails(movieId), fetcher);
 
   if (!data) return null;
 

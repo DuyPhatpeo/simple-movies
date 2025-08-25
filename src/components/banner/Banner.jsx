@@ -1,19 +1,13 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, apiKey } from "../../config";
+import { fetcher, tmdbAPI } from "../../config";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules"; // 👈 import thêm
 import BannerItem from "./BannerItem";
 
 const Banner = () => {
-  const { data: movieData } = useSWR(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`,
-    fetcher
-  );
-  const { data: genreData } = useSWR(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`,
-    fetcher
-  );
+  const { data: movieData } = useSWR(tmdbAPI.getMovieList("upcoming"), fetcher);
+  const { data: genreData } = useSWR(tmdbAPI.getGenreList(), fetcher);
 
   const movies = movieData?.results || [];
   const genreList = genreData?.genres || [];

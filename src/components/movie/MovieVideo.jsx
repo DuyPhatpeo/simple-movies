@@ -1,11 +1,8 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, apiKey } from "../../config";
+import { fetcher, tmdbAPI } from "@/config";
 const MovieVideo = ({ movieId }) => {
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getMovieVideos(movieId), fetcher);
   if (!data?.results?.length) return null;
 
   const trailer = data.results.find(
@@ -18,7 +15,7 @@ const MovieVideo = ({ movieId }) => {
       <h2 className="text-2xl font-semibold mb-8">Trailer</h2>
       <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
         <iframe
-          src={`https://www.youtube.com/embed/${trailer.key}`}
+          src={tmdbAPI.getMovieTrailer(trailer.key)}
           title={trailer.name}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen

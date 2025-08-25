@@ -1,13 +1,10 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, apiKey } from "../../config";
+import { fetcher, tmdbAPI } from "@/config";
 import { useNavigate } from "react-router-dom";
 
 const MovieSimilar = ({ movieId }) => {
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getSimilarMovies(movieId), fetcher);
   const navigate = useNavigate();
 
   if (!data?.results?.length) return null;
@@ -25,7 +22,7 @@ const MovieSimilar = ({ movieId }) => {
             <img
               src={
                 movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                  ? tmdbAPI.getImageW300(movie.poster_path)
                   : "https://via.placeholder.com/300x450?text=No+Image"
               }
               alt={movie.title}

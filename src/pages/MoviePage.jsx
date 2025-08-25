@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, apiKey } from "../config";
+import { fetcher, tmdbAPI } from "../config";
 import MovieCard from "@components/movie/MovieCard";
 import { FiSearch } from "react-icons/fi";
 import useDebounce from "@hooks/useDebounce";
@@ -11,9 +11,7 @@ const MAX_TMDB_PAGES = 500;
 const MoviesPage = () => {
   const [filter, setFilter] = React.useState("");
   const [page, setPage] = React.useState(1);
-  const [url, setUrl] = React.useState(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`
-  );
+  const [url, setUrl] = React.useState(tmdbAPI.getPopularMovies());
 
   const filterDebounce = useDebounce(filter, 500);
 
@@ -27,15 +25,9 @@ const MoviesPage = () => {
 
   React.useEffect(() => {
     if (filterDebounce) {
-      setUrl(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-          filterDebounce
-        )}&page=${page}`
-      );
+      setUrl(tmdbAPI.searchMovie(filterDebounce, page));
     } else {
-      setUrl(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`
-      );
+      setUrl(tmdbAPI.getPopularMovies(page));
     }
   }, [filterDebounce, page]);
 

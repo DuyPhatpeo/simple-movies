@@ -1,3 +1,4 @@
+import { tmdbAPI } from "@/config";
 import React from "react";
 import { FaStar, FaPlay } from "react-icons/fa";
 import { MdCalendarToday, MdAccessTime } from "react-icons/md";
@@ -28,7 +29,7 @@ const MovieInfo = ({ movie }) => {
         {/* Poster */}
         <div className="flex-shrink-0 w-[260px] lg:w-[320px] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
           <img
-            src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+            src={tmdbAPI.getImage(poster_path)}
             alt={title}
             className="w-full h-full object-cover"
           />

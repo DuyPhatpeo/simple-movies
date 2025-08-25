@@ -1,4 +1,5 @@
 import React from "react";
+import { tmdbAPI } from "@/config";
 
 const MovieBackdrop = ({ backdropPath, height = "600px" }) => {
   return (
@@ -7,7 +8,7 @@ const MovieBackdrop = ({ backdropPath, height = "600px" }) => {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdropPath})`,
+          backgroundImage: `url(${tmdbAPI.getImage(backdropPath)})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

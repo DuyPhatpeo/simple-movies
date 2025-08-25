@@ -1,6 +1,7 @@
 import Button from "@components/common/Button";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { tmdbAPI } from "@/config";
 
 const BannerItem = ({ item, genreMap }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const BannerItem = ({ item, genreMap }) => {
     >
       {/* Image */}
       <img
-        src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+        src={tmdbAPI.getImage(item.backdrop_path)}
         alt={item.title}
         className="w-full h-full object-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
       />
