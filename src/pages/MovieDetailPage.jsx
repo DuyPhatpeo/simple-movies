@@ -1,12 +1,14 @@
+import React, { Fragment } from "react";
+import { useParams } from "react-router-dom";
+import useSWR from "swr";
+import { fetcher, tmdbAPI } from "@api/config";
+
 import MovieBackdrop from "@components/movie/MovieBackdrop";
 import MovieInfo from "@components/movie/MovieInfo";
 import MovieCredit from "@components/movie/MovieCredit";
 import MovieVideo from "@components/movie/MovieVideo";
 import MovieSimilar from "@components/movie/MovieSimilar";
-import React, { Fragment } from "react";
-import { useParams } from "react-router-dom";
-import useSWR from "swr";
-import { fetcher, tmdbAPI } from "@api/config";
+import MovieComments from "@components/movie/MovieComments";
 
 const MovieDetailPage = () => {
   const { movieId } = useParams();
@@ -19,17 +21,27 @@ const MovieDetailPage = () => {
       {/* Background */}
       <MovieBackdrop backdropPath={data.backdrop_path} />
 
-      {/* Movie Info */}
-      <MovieInfo movie={data} />
+      <div className="max-w-7xl mx-auto px-4 text-white grid grid-cols-1 lg:grid-cols-4 gap-10 mt-8">
+        {/* LEFT SIDE: main content */}
+        <div className="lg:col-span-3 flex flex-col gap-10">
+          {/* Movie Info */}
+          <MovieInfo movie={data} />
 
-      {/* Casts */}
-      <MovieCredit credits={data.credits} />
+          {/* Trailer */}
+          <MovieVideo movieId={movieId} />
 
-      {/* Trailer */}
-      <MovieVideo movieId={movieId} />
+          {/* Casts */}
+          <MovieCredit credits={data.credits} />
 
-      {/* Similar Movies */}
-      <MovieSimilar movieId={movieId} />
+          {/* Comments */}
+          <MovieComments />
+        </div>
+
+        {/* RIGHT SIDE: similar movies */}
+        <aside className="lg:col-span-1">
+          <MovieSimilar movieId={movieId} />
+        </aside>
+      </div>
     </Fragment>
   );
 };

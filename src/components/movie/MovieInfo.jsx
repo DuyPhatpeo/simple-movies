@@ -64,7 +64,7 @@ const MovieInfo = ({ movie }) => {
               {genres.map((genre) => (
                 <span
                   key={genre.id}
-                  className="px-4 py-1 text-sm rounded-full border border-purple-500 text-purple-300 bg-purple-500/20 font-medium"
+                  className="px-4 py-1 text-sm rounded-full border border-emerald-500 text-emerald-300 bg-emerald-500/20 font-medium"
                 >
                   {genre.name}
                 </span>

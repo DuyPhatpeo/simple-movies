@@ -1,34 +1,39 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher, tmdbAPI } from "@api/config";
+import { fetcher, apiKey, tmdbAPI } from "@api/config";
 import { useNavigate } from "react-router-dom";
 
 const MovieSimilar = ({ movieId }) => {
-  const { data } = useSWR(tmdbAPI.getSimilarMovies(movieId), fetcher);
+  const { data } = useSWR(
+    `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`,
+    fetcher
+  );
   const navigate = useNavigate();
-
   if (!data?.results?.length) return null;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 mt-20 text-white">
-      <h2 className="text-2xl font-semibold mb-8">Similar Movies</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        {data.results.slice(0, 10).map((movie) => (
+    <div className="space-y-4">
+      <h2 className="text-xl font-semibold mb-2">Similar Movies</h2>
+      <div className="flex flex-col gap-4">
+        {data.results.slice(0, 6).map((item) => (
           <div
-            key={movie.id}
-            onClick={() => navigate(`/movies/${movie.id}`)}
-            className="flex flex-col cursor-pointer hover:scale-105 transition-transform duration-300"
+            key={item.id}
+            className="flex gap-3 items-center cursor-pointer hover:bg-gray-800/40 p-2 rounded-lg transition"
+            onClick={() => navigate(`/movies/${item.id}`)}
           >
             <img
-              src={
-                movie.poster_path
-                  ? tmdbAPI.getImage(movie.poster_path, "w300")
-                  : "https://via.placeholder.com/300x450?text=No+Image"
-              }
-              alt={movie.title}
-              className="w-full h-[250px] object-cover rounded-lg shadow-md"
+              src={tmdbAPI.getImage(item.poster_path, "w200")}
+              alt={item.title}
+              className="w-16 h-24 object-cover rounded-md flex-shrink-0"
             />
-            <p className="mt-2 font-medium line-clamp-2">{movie.title}</p>
+            <div className="flex flex-col">
+              <h3 className="text-sm font-medium leading-tight line-clamp-2">
+                {item.title}
+              </h3>
+              <span className="text-xs text-gray-400">
+                {item.release_date?.slice(0, 4) || "N/A"}
+              </span>
+            </div>
           </div>
         ))}
       </div>

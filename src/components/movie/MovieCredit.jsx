@@ -1,5 +1,5 @@
 import React from "react";
-
+import { tmdbAPI } from "@/api/config";
 const MovieCredit = ({ credits }) => {
   const casts = credits?.cast?.slice(0, 6) || [];
   if (casts.length === 0) return null;
@@ -13,7 +13,7 @@ const MovieCredit = ({ credits }) => {
             <img
               src={
                 actor.profile_path
-                  ? `https://image.tmdb.org/t/p/w300${actor.profile_path}`
+                  ? tmdbAPI.getImage(actor.profile_path)
                   : "https://via.placeholder.com/300x450?text=No+Image"
               }
               alt={actor.name}
